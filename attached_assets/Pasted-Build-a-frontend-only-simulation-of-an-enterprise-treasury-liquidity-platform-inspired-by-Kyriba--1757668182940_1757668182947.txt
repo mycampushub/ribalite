@@ -1,0 +1,126 @@
+Build a frontend-only simulation of an enterprise treasury & liquidity platform (inspired by Kyriba like exact ui)
+
+Project goal (one sentence):
+Build a responsive, production-quality frontend-only simulation of an enterprise treasury and liquidity platform that reproduces the same pages, workflows, interactions, and data visualizations as a modern treasury product, but with original visual design, UI tokens,brand assets only without Kyriba logo.
+
+High-level constraints & legal note:
+All visuals, wording, and icons must be original or open-source. The goal is behavioral and functional parity (pages, components, flows, charts, interactions. 
+
+Deliverables
+
+Single-page-app (SPA) front-end repository (React) with sample/mock data only (no backend required).
+
+Component library (reusable React components) with Storybook or similar.
+
+Responsive layouts for desktop/tablet/mobile.
+
+pages & flows:
+
+Dashboard (cash balances, bank list, quick actions).
+
+Cash Position view (bank balances, chart, filters).
+
+Cash Forecasting page (timeline, scenario builder, forecast chart).
+
+Payments page (payments list, approval workflow modal, stop-fraud action).
+
+Risk Management page (FX exposures, hedge suggestions).
+
+Connectivity page (bank & ERP connectors list).
+
+Admin / settings (users, roles, integrations).
+
+Mock data generator (JSON fixtures + a small utility to randomize values) to simulate dynamic changes.
+
+Full README with run instructions and component documentation.
+
+Accessibility: ARIA roles, keyboard navigation, color contrast checks.
+
+Automated visual tests (e.g., Chromatic snapshots or Playwright screenshot tests) and unit tests for key components.
+
+Tech stack (recommended)
+
+Framework: React (v18+) with Vite.
+
+Styling: Tailwind CSS (utility-first) + design tokens.
+
+Charts: Recharts or Chart.js (frontend-only).
+
+State: React Query or Zustand for client state (mocked).
+
+Routing: React Router.
+
+Component preview: Storybook.
+
+Testing: Jest + React Testing Library; Playwright for E2E or visual snapshots.
+
+Accessibility tooling: axe-core (CI integration).
+
+UX & page-by-page behavior (detailed)
+
+
+2) Dashboard (core app page)
+
+Top nav with product name (instead Kyriba use a different name), breadcrumb, and user avatar + global search.
+
+Left persistent sidebar: sections (Dashboard, Cash Position, Forecast, Payments, Risk, Connectivity, Settings). Collapsible on mobile.
+
+Main panel: 3-column responsive layout:
+
+Column A: Quick actions (Create Payment, Upload Bank Statement, Run Forecast), recent activity feed.
+
+Column B: Cash Balances by bank (table) + inline sparkline chart per row.
+
+Column C: Large interactive cash chart (time series) with date range picker and annotation capability.
+
+Interactions: table row click opens right-side details drawer, chart tooltip with rich data, date-range drag to zoom.
+
+3) Cash Position view
+
+Data table with bank accounts, currency, ledger balance, available balance, last update.
+
+Filters: currency, bank, region, hide-zero.
+
+Chart area: stacked bar or donut showing balance distribution; clicking a bank row highlights chart slice and shows transactions modal.
+
+4) Forecasting page
+
+Scenario builder: create scenario modal (name, start/end dates, assumptions).
+
+Forecast chart: multi-line (baseline, scenario A, scenario B). Hover shows forecast table below.
+
+Simulation controls: play/pause simulation (animate forecast progression over time).
+
+“What-if” panel: adjust inflows/outflows sliders and instantly update chart (client-side math).
+
+5) Payments page
+
+Payments table (filter by status: Draft, Pending approval, Sent, Blocked).
+
+Payment detail modal with approve/reject actions and “Stop payment” button (simulated).
+
+Fraud prevention flagging: visually mark suspicious payments and open an investigation drawer with steps and comments.
+
+6) Risk Management
+
+FX exposures table aggregated by currency, visualized as a heatmap or bar chart.
+
+Hedge suggestions card: simulate algorithmic recommendations (mocked) and allow user to accept/create hedge (no real trade).
+
+7) Connectivity
+
+List of connected banks and ERPs with status badges (Connected, Pending, Error).
+
+Connector detail view with sample API keys (masked), logs (mock lines), and test connection button that simulates success/failure.
+
+8) Settings / Admin
+
+User management list, role assignment modal, audit log viewer (read-only), theme switch (light/dark).
+
+Component list (must-have)
+
+TopNav, Sidebar, PageShell, DataTable (sortable, filterable), ChartContainer, Modal, Drawer, Card, Badge, Avatar, Button variants, Form inputs (with validation), DateRangePicker, Toast/Notifications, EmptyState, LoadingSkeleton, Pagination, Search input (with fuzzy match).
+
+Each component must include:
+
+Prop types (TS), stories in Storybook, accessibility notes, tests (snapshot + interactions).
